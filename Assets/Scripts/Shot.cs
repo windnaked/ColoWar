@@ -10,7 +10,7 @@ public class Shot : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.Find("Nave");
+        player = GameObject.Find("Ship");
     }
 
 
