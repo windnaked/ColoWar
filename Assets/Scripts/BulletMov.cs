@@ -7,7 +7,7 @@ public class BulletMov : MonoBehaviour
     private float maxSpeed = 5f;
     private float width;
     private float height;
-    private Camera cam;
+    private Camera cam
     public GameObject bullet;
 
     void Start()
@@ -20,8 +20,8 @@ public class BulletMov : MonoBehaviour
          * cortam as heigths e fica a width da cam (como uma equacao)
          
         */
-        height = (2f * cam.orthographicSize)+ 0.5f; //bias value 0.5 to make sure the bullet exits the screen
-        width = (height * cam.aspect)+ 0.5f;
+        height = (2f * cam.orthographicSize)+ 0.2f; //bias value 0.5 to make sure the bullet exits the screen
+        width = (height * cam.aspect)+ 0.2f;
 
     }
     // Update is called once per frame
@@ -39,8 +39,8 @@ public class BulletMov : MonoBehaviour
         //neste caso não é necessário mas pode vir a ser quando se fizer as balas de lado e assim
 
         pos += transform.rotation * velocity;
-        //bias value -0.5 to make sure the bullet exits the screen
-        if (pos.x <= -0.5 || pos.y <= -0.5 || pos.x >= width || pos.y >= height) {
+        //bias value -0.2 to make sure the bullet exits the screen
+        if (pos.x <= -0.2 || pos.y <= -0.2 || pos.x >= width || pos.y >= height) {
             Destroy(bullet);
         }
 
