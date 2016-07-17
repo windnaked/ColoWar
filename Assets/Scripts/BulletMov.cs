@@ -7,7 +7,7 @@ public class BulletMov : MonoBehaviour
     private float maxSpeed = 5f;
     private float width;
     private float height;
-    private Camera cam
+    private Camera cam;
     public GameObject bullet;
 
     void Start()
@@ -15,13 +15,13 @@ public class BulletMov : MonoBehaviour
         cam = Camera.main;
         bullet.GetComponent<GameObject>();
         /*@param 
-         * cam.orthographicSize devolve o tamanho da camara em metade, logo multiplica-se por 2
+         * cam.orthographicSize devolve o tamanho da camara em metade, logo multiplica-se por 2, somo a ela propria por questoes de otimizacao
          * cam.aspect devolve o aspect ratio da camara que se usa para descobrir a width porque a conta fica width = (height_calculada * height_da_cam/width_da cam) 
          * cortam as heigths e fica a width da cam (como uma equacao)
          
         */
-        height = (2f * cam.orthographicSize)+ 0.2f; //bias value 0.5 to make sure the bullet exits the screen
-        width = (height * cam.aspect)+ 0.2f;
+        height = cam.orthographicSize + cam.orthographicSize + 0.2f; //bias value 0.5 to make sure the bullet exits the screen
+        width = (height * cam.aspect) + 0.2f;
 
     }
     // Update is called once per frame
@@ -40,12 +40,13 @@ public class BulletMov : MonoBehaviour
 
         pos += transform.rotation * velocity;
         //bias value -0.2 to make sure the bullet exits the screen
-        if (pos.x <= -0.2 || pos.y <= -0.2 || pos.x >= width || pos.y >= height) {
+        if (pos.x <= -0.2 || pos.y <= -0.2 || pos.x >= width || pos.y >= height)
+        {
             Destroy(bullet);
         }
 
         transform.position = pos;
 
-        
+
     }
 }
