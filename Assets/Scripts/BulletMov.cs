@@ -34,7 +34,7 @@ public class BulletMov : MonoBehaviour
         //neste caso não é necessário mas pode vir a ser quando se fizer as balas de lado e assim
 
         pos += transform.rotation * velocity;
-        //bias value -0.2 to make sure the bullet exits the screen
+        //bias value BULLET_SIZE to make sure the bullet exits the screen
         if (pos.x <= -BULLET_SIZE || pos.y <= -BULLET_SIZE || pos.x >= camSize.x + BULLET_SIZE || pos.y >= camSize.y + BULLET_SIZE)
         {
             Destroy(bullet);
