@@ -8,19 +8,35 @@ public class Shoot : MonoBehaviour
     Vector3 playerPosition;
     public GameObject player;
     private bool isShootPressed = false;
-    private float fireRate; //nao sei o que fazer com isto
+    private float lastShotTime = float.MinValue;
+    public float fireRate = 1;
+    enum Weapons { Normal, Shotgun, Laser };
+    Weapons CurrentWeapon;
 
     void Start()
     {
         player = GameObject.Find("Ship");
+        CurrentWeapon = Weapons.Normal;
+
     }
 
-    //parte chata disto... Ele em cada frame vai estar a verificar se esta a disparar ou nao
     void Update()
     {
-        if (isShootPressed)
+        switch (CurrentWeapon)
         {
-            shootBullet();
+            case Weapons.Normal:
+                if (isShootPressed && Time.time > lastShotTime + (3.0f / fireRate))
+                {
+                    lastShotTime = Time.time;
+                    shootBullet();
+                }
+                break;
+
+            case Weapons.Shotgun:
+              break;
+
+            case Weapons.Laser:
+              break;
         }
     }
 
