@@ -9,19 +9,14 @@ public class BulletMov : MonoBehaviour
     private float height;
     private Camera cam;
     public GameObject bullet;
+    private Vector2 camSize;
+    private const float BULLET_SIZE = 0.2f;
 
     void Start()
     {
         cam = Camera.main;
         bullet.GetComponent<GameObject>();
-        /*@param 
-         * cam.orthographicSize devolve o tamanho da camara em metade, logo multiplica-se por 2, somo a ela propria por questoes de otimizacao
-         * cam.aspect devolve o aspect ratio da camara que se usa para descobrir a width porque a conta fica width = (height_calculada * height_da_cam/width_da cam) 
-         * cortam as heigths e fica a width da cam (como uma equacao)
-         
-        */
-        height = cam.orthographicSize + cam.orthographicSize + 0.2f; //bias value 0.5 to make sure the bullet exits the screen
-        width = (height * cam.aspect) + 0.2f;
+        camSize = cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth, cam.pixelHeight));
 
     }
     // Update is called once per frame
@@ -40,7 +35,7 @@ public class BulletMov : MonoBehaviour
 
         pos += transform.rotation * velocity;
         //bias value -0.2 to make sure the bullet exits the screen
-        if (pos.x <= -0.2 || pos.y <= -0.2 || pos.x >= width || pos.y >= height)
+        if (pos.x <= -BULLET_SIZE || pos.y <= -BULLET_SIZE || pos.x >= camSize.x + BULLET_SIZE || pos.y >= camSize.y + BULLET_SIZE)
         {
             Destroy(bullet);
         }

@@ -11,14 +11,15 @@ public class PlayerMove : MonoBehaviour
     private float height;
     private Camera cam;
     private float biasLimitWidth = 0.3f;
-    private float biasLimitHeight = 0.25f;
+    private float biasLimitHeight = 0.3f;
+    private Vector2 camSize;
 
     void Start()
     {
         cam = Camera.main;
-        Vector2 position = new Vector2(this.transform.position.x, this.transform.position.y);
         height = cam.orthographicSize + cam.orthographicSize;
         width = (height * cam.aspect);
+        camSize = cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth, cam.pixelHeight));
     }
 
     void Update()
@@ -28,21 +29,20 @@ public class PlayerMove : MonoBehaviour
         {
             transform.position = new Vector2(biasLimitWidth, transform.position.y);
         }
-        else if (transform.position.x > (width - biasLimitWidth))
+        else if (transform.position.x > (camSize.x - biasLimitWidth))
         {
-            transform.position = new Vector2(width - biasLimitWidth, transform.position.y);
+            transform.position = new Vector2(camSize.x - biasLimitWidth, transform.position.y);
         }
 
         // Y axis
-        //Ver o que fazer aqui, talvez usar colliders, ou arranjar uma maneira de sacar o tamanho do sprite
-        //Isto esta a funcionar mas na heigth consegue-se ver o reset da posicao
+        //A VELOCIDADE ESTA A FUDER ISTO TUDO!! quao mais rapido ele vai mais se nota o reset da posicao
         if (transform.position.y < biasLimitHeight)
         {
             transform.position = new Vector2(transform.position.x, biasLimitHeight);
         }
-        else if (transform.position.y > (height - biasLimitHeight))
+        else if (transform.position.y >= (camSize.y - biasLimitHeight))
         {
-            transform.position = new Vector2(transform.position.x, height - biasLimitHeight);
+            transform.position = new Vector2(transform.position.x, camSize.y - biasLimitHeight);
         }
         else
         {
