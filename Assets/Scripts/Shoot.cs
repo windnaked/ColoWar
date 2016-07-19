@@ -9,9 +9,11 @@ public class Shoot : MonoBehaviour
     public GameObject player;
     private bool isShootPressed = false;
     private float lastShotTime = float.MinValue;
-    public float fireRate = 1;
-    enum Weapons { Normal, Shotgun, Laser };
-    Weapons CurrentWeapon;
+    private float fireRate = 1;
+    private float damage = 1;
+
+    public enum Weapons { Normal, NormalF2, Shotgun, ShotgunF2, Laser, LaserF2 };
+    public Weapons CurrentWeapon;
 
     void Start()
     {
@@ -25,6 +27,8 @@ public class Shoot : MonoBehaviour
         switch (CurrentWeapon)
         {
             case Weapons.Normal:
+                fireRate = 20;
+                damage = 50;
                 if (isShootPressed && Time.time > lastShotTime + (3.0f / fireRate))
                 {
                     lastShotTime = Time.time;
@@ -32,11 +36,56 @@ public class Shoot : MonoBehaviour
                 }
                 break;
 
+            case Weapons.NormalF2:
+                fireRate = 20;
+                damage = 50;
+                if (isShootPressed && Time.time > lastShotTime + (3.0f / fireRate))
+                {
+                    lastShotTime = Time.time;
+                    shootBulletNF2();
+                }
+                break;
+
+
             case Weapons.Shotgun:
-              break;
+                fireRate = 5;
+                if (isShootPressed && Time.time > lastShotTime + (3.0f / fireRate))
+                {
+                    lastShotTime = Time.time;
+                    shootBulletS();
+                }
+
+                break;
+
+            case Weapons.ShotgunF2:
+
+                if (isShootPressed && Time.time > lastShotTime + (3.0f / fireRate))
+                {
+                    lastShotTime = Time.time;
+                    shootBullet();
+                }
+
+                break;
 
             case Weapons.Laser:
-              break;
+                fireRate = 100;
+                damage = 5;
+                if (isShootPressed && Time.time > lastShotTime + (3.0f / fireRate))
+                {
+                    lastShotTime = Time.time;
+                    shootBullet();
+                }
+                break;
+
+            case Weapons.LaserF2:
+                fireRate = 100;
+                damage = 5;
+                if (isShootPressed && Time.time > lastShotTime + (3.0f / fireRate))
+                {
+                    lastShotTime = Time.time;
+                    shootBullet();
+                }
+                break;
         }
     }
 
@@ -45,6 +94,25 @@ public class Shoot : MonoBehaviour
     {
         playerPosition = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
         Instantiate(Bullet, playerPosition, Quaternion.identity);
+    }
+
+    public void shootBulletNF2()
+    {
+        playerPosition = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+        Instantiate(Bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, 20)));
+        Instantiate(Bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, -20)));
+        Instantiate(Bullet, playerPosition, Quaternion.identity);
+    }
+
+    public void shootBulletS()
+    {
+        playerPosition = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+        Instantiate(Bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 45))));
+        Instantiate(Bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, -45))));
+        Instantiate(Bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 45))));
+        Instantiate(Bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, -45))));
+        Instantiate(Bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 45))));
+        Instantiate(Bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, -45))));
     }
 
     public void onPointerDownShootButton()
