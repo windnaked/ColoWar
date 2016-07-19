@@ -10,7 +10,7 @@ public class BulletMov : MonoBehaviour
     private Camera cam;
     public GameObject bullet;
     private Vector2 camSize;
-    private const float BULLET_SIZE = 0.2f;
+    public const float BULLET_SIZE = 0.2f;
 
     void Start()
     {
