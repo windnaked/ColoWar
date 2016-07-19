@@ -11,8 +11,8 @@ public class Shoot : MonoBehaviour
     private float lastShotTime = float.MinValue;
     private float fireRate = 1;
     private float damage = 1;
-    public const  int SHOTGUN_NUM_SHOTS = 6;
-    public const int NORMAL_F2_NUM_SHOTS = 2;
+    public int SHOTGUN_NUM_SHOTS = 6;
+    public int NORMAL_F2_NUM_SHOTS = 2;
 
     public enum Weapons { Normal, NormalF2, Shotgun, ShotgunF2, Laser, LaserF2 };
     public Weapons CurrentWeapon;
@@ -61,7 +61,7 @@ public class Shoot : MonoBehaviour
                 break;
 
             case Weapons.ShotgunF2:
-
+                fireRate = 10;
                 if (isShootPressed && Time.time > lastShotTime + (3.0f / fireRate))
                 {
                     lastShotTime = Time.time;
