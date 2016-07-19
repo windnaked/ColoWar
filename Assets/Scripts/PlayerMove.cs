@@ -17,8 +17,6 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
-        height = cam.orthographicSize + cam.orthographicSize;
-        width = (height * cam.aspect);
         camSize = cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth, cam.pixelHeight));
     }
 
