@@ -105,11 +105,14 @@ public class Shoot : MonoBehaviour
         int rotation = 20;
         for (int i = 0; i < NORMAL_F2_NUM_SHOTS; i++)
         {
-            if(i%2 != 0) //change rotation on even iterations
+            if (i % 2 != 0) //change rotation on even iterations
             {
-                rotation = -rotation;
+                Instantiate(Bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, -rotation))));
             }
-            Instantiate(Bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, rotation)));
+            else
+            {
+                Instantiate(Bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, rotation))));
+            }
         }
     }
 
@@ -121,9 +124,12 @@ public class Shoot : MonoBehaviour
         {
             if (i % 2 != 0) //change rotation on even iterations
             {
-                rotation = -rotation;
+                Instantiate(Bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, -rotation))));
             }
-            Instantiate(Bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, rotation))));
+            else
+            {
+                Instantiate(Bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, rotation))));
+            }
         }
     }
 
