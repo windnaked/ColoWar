@@ -107,11 +107,11 @@ public class Shoot : MonoBehaviour
         {
             if (i % 2 != 0) //change rotation on even iterations
             {
-                Instantiate(Bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, -rotation))));
+                Instantiate(Bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, -rotation)));
             }
             else
             {
-                Instantiate(Bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, rotation))));
+                Instantiate(Bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, rotation)));
             }
         }
     }
