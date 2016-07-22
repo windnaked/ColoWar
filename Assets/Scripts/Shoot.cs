@@ -4,12 +4,13 @@ using System.Collections;
 public class Shoot : MonoBehaviour
 {
 
-    public Transform Bullet;
+    public Transform bullet;
+    public Transform laser;
     Vector3 playerPosition;
     public GameObject player;
     private bool isShootPressed = false;
     private float lastShotTime = float.MinValue;
-    private float fireRate = 1;
+    public float fireRate = 1;
     private float damage = 1;
     public int SHOTGUN_NUM_SHOTS = 6;
     public int NORMAL_F2_NUM_SHOTS = 2;
@@ -26,6 +27,7 @@ public class Shoot : MonoBehaviour
 
     void Update()
     {
+        //LaserMov[] lasers = Object.FindObjectsOfType<LaserMov>();
         switch (CurrentWeapon)
         {
             case Weapons.Normal:
@@ -71,32 +73,57 @@ public class Shoot : MonoBehaviour
                 break;
 
             case Weapons.Laser:
-                fireRate = 100;
-                damage = 5;
+                fireRate = 150;
+                damage = 3;
+
                 if (isShootPressed && Time.time > lastShotTime + (3.0f / fireRate))
                 {
+
                     lastShotTime = Time.time;
-                    shootBullet();
+                    shootLaser();
                 }
+
+                /* if (!isShootPressed && lasers.Length != 0)
+                 {
+                     foreach (LaserMov laser in lasers)
+                     {
+                         Destroy(laser);
+                     }
+                 } */
                 break;
 
             case Weapons.LaserF2:
-                fireRate = 100;
+                fireRate = 150;
                 damage = 5;
                 if (isShootPressed && Time.time > lastShotTime + (3.0f / fireRate))
                 {
+
                     lastShotTime = Time.time;
-                    shootBullet();
+                    shootLaser();
                 }
+                /* if (!isShootPressed && lasers.Length != 0)
+                 {
+                     foreach (LaserMov laser in lasers)
+                     {
+                         Destroy(laser);
+                     }
+                 } */
                 break;
         }
     }
 
 
+    public void shootLaser()
+    {
+        playerPosition = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+        Instantiate(laser, playerPosition, Quaternion.identity);
+        // laser.transform.position = player.transform.position;
+    }
+
     public void shootBullet()
     {
         playerPosition = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
-        Instantiate(Bullet, playerPosition, Quaternion.identity);
+        Instantiate(bullet, playerPosition, Quaternion.identity);
     }
 
     public void shootBulletNF2()
@@ -107,11 +134,11 @@ public class Shoot : MonoBehaviour
         {
             if (i % 2 != 0) //change rotation on even iterations
             {
-                Instantiate(Bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, -rotation)));
+                Instantiate(bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, -rotation)));
             }
             else
             {
-                Instantiate(Bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, rotation)));
+                Instantiate(bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, rotation)));
             }
         }
     }
@@ -124,11 +151,11 @@ public class Shoot : MonoBehaviour
         {
             if (i % 2 != 0) //change rotation on even iterations
             {
-                Instantiate(Bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, -rotation))));
+                Instantiate(bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, -rotation))));
             }
             else
             {
-                Instantiate(Bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, rotation))));
+                Instantiate(bullet, playerPosition, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, rotation))));
             }
         }
     }
