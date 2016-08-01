@@ -46,6 +46,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\BulletMov.cs" />
+     <Compile Include="Assets\Scripts\DamageHandler.cs" />
+     <Compile Include="Assets\Scripts\EnemyMov.cs" />
+     <Compile Include="Assets\Scripts\EnemyShot.cs" />
      <Compile Include="Assets\Scripts\PlayerMove.cs" />
      <Compile Include="Assets\Scripts\Shoot.cs" />
      <None Include="Assets\Standard Assets\Fonts\OpenSans\License!.txt" />
