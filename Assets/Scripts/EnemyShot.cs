@@ -41,7 +41,8 @@ public class EnemyShot : MonoBehaviour
 
     public void shootBullet()
     {
-        enemyPosition = new Vector3(enemy.transform.position.x, enemy.transform.position.y, enemy.transform.position.z);
-        Instantiate(Bullet, enemyPosition, Quaternion.identity);
+        enemyPosition = enemy.transform.position;
+        Instantiate(Bullet, enemyPosition, Quaternion.Euler(0, 0, 180));
+       // Instantiate(Bullet, enemyPosition, Quaternion.Euler(new Vector3(0, 0, Random.Range(90, 270))));
     }
 }

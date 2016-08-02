@@ -102,19 +102,19 @@ public class Shoot : MonoBehaviour
 
     public void shootLaser()
     {
-        playerPosition = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+        playerPosition = player.transform.position;
         Instantiate(laser, playerPosition, Quaternion.identity);
     }
 
     public void shootBullet()
     {
-        playerPosition = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+        playerPosition = player.transform.position;
         Instantiate(bullet, playerPosition, Quaternion.identity);
     }
 
     public void shootBulletNF2()
     {
-        playerPosition = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+        playerPosition = player.transform.position;
         int rotation = 20;
         for (int i = 0; i < NORMAL_F2_NUM_SHOTS; i++)
         {
@@ -131,7 +131,7 @@ public class Shoot : MonoBehaviour
 
     public void shootBulletS()
     {
-        playerPosition = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+        playerPosition = player.transform.position; // new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
         int rotation = 45;
         for (int i = 0; i < SHOTGUN_NUM_SHOTS; i++)
         {

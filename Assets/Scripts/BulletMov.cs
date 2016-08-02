@@ -11,14 +11,12 @@ public class BulletMov : MonoBehaviour
     public GameObject bullet;
     private Vector2 camSize;
     private const float BULLET_SIZE = 0.2f;
-    public float zRotation = 0;
 
     void Start()
     {
         cam = Camera.main;
         bullet.GetComponent<GameObject>();
         camSize = cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth, cam.pixelHeight));
-        this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, zRotation));
 
     }
     // Update is called once per frame

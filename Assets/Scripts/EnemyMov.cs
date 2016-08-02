@@ -13,6 +13,7 @@ public class EnemyMov : MonoBehaviour
     private float minionSize = 0.5f;
     private Vector3 position;
     float x, y, force;
+    public float health;
 
 
     private float directionChangeInterval;
