@@ -33,7 +33,6 @@ public class PlayerMove : MonoBehaviour
         }
 
         // Y axis
-        //A VELOCIDADE ESTA A FUDER ISTO TUDO!! quao mais rapido ele vai mais se nota o reset da posicao
         if (transform.position.y < biasLimitHeight)
         {
             transform.position = new Vector2(transform.position.x, biasLimitHeight);

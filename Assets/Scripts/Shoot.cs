@@ -22,12 +22,12 @@ public class Shoot : MonoBehaviour
     {
         player = GameObject.Find("Ship");
         CurrentWeapon = Weapons.Normal;
-
+        bullet.GetComponent<GameObject>();
+        laser.GetComponent<GameObject>();
     }
 
     void Update()
     {
-        //LaserMov[] lasers = Object.FindObjectsOfType<LaserMov>();
         switch (CurrentWeapon)
         {
             case Weapons.Normal:
@@ -83,13 +83,6 @@ public class Shoot : MonoBehaviour
                     shootLaser();
                 }
 
-                /* if (!isShootPressed && lasers.Length != 0)
-                 {
-                     foreach (LaserMov laser in lasers)
-                     {
-                         Destroy(laser);
-                     }
-                 } */
                 break;
 
             case Weapons.LaserF2:
@@ -101,13 +94,7 @@ public class Shoot : MonoBehaviour
                     lastShotTime = Time.time;
                     shootLaser();
                 }
-                /* if (!isShootPressed && lasers.Length != 0)
-                 {
-                     foreach (LaserMov laser in lasers)
-                     {
-                         Destroy(laser);
-                     }
-                 } */
+
                 break;
         }
     }
@@ -117,7 +104,6 @@ public class Shoot : MonoBehaviour
     {
         playerPosition = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
         Instantiate(laser, playerPosition, Quaternion.identity);
-        // laser.transform.position = player.transform.position;
     }
 
     public void shootBullet()

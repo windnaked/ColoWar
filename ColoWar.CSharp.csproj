@@ -58,6 +58,12 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -70,6 +76,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\BulletMov.cs" />
+    <Compile Include="Assets\Scripts\DamageHandler.cs" />
+    <Compile Include="Assets\Scripts\EnemyMov.cs" />
+    <Compile Include="Assets\Scripts\EnemyShot.cs" />
     <Compile Include="Assets\Scripts\LaserMov.cs" />
     <Compile Include="Assets\Scripts\PlayerMove.cs" />
     <Compile Include="Assets\Scripts\Shoot.cs" />
