@@ -13,7 +13,7 @@ public class PlayerMove : MonoBehaviour
     private float biasLimitWidth = 0.3f;
     private float biasLimitHeight = 0.3f;
     private Vector2 camSize;
-    public float health;
+    public float health = 500;
 
     void Start()
     {

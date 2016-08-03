@@ -11,7 +11,7 @@ public class Shoot : MonoBehaviour
     private bool isShootPressed = false;
     private float lastShotTime = float.MinValue;
     public float fireRate = 1;
-    private float damage = 1;
+    public float damage = 1;
     public int SHOTGUN_NUM_SHOTS = 6;
     public int NORMAL_F2_NUM_SHOTS = 2;
 

@@ -1,21 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DamageHandler : MonoBehaviour
-{
+public class PlayerDamageHandler : MonoBehaviour {
 
-    public float health = 5;
-    public float damage = 2;
+    private float health;
+    private float damage;
 
-
-    // Use this for initialization
-    void Start()
+	// Use this for initialization
+	void Start ()
     {
+        health = gameObject.GetComponent<PlayerMove>().health;
         
-
-
-    }
-
+	}
 
     void OnTriggerEnter2D()
     {
@@ -28,6 +24,7 @@ public class DamageHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        health = gameObject.GetComponent<PlayerMove>().health;
 
         if (health <= 0)
         {
